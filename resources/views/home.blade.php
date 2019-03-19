@@ -11,7 +11,7 @@
 
 <script>
     window.addEventListener("load",function() {
-
+        $('loading').css({"opacity":"0","pointer-events":"none"});
     }, false);
 
 </script>
