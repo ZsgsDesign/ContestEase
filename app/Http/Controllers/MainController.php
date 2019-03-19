@@ -8,8 +8,8 @@ class MainController extends Controller
 {
     public function account(Request $request)
     {
-        return view('home', [
-            'page_title'=>"账号",
+        return view('account', [
+            'page_title'=>"登录",
             'site_title'=>"新生杯",
             'navigation' => "Account",
         ]);
