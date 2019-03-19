@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/home', '/', 301);
+Route::get('/', 'MainController@home')->name('home');
+Route::get('/account', 'MainController@account')->name('account');
