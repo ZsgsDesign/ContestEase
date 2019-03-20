@@ -47,9 +47,9 @@
     <div class="row">
         <div class="col-sm-12 col-md-8">
             <paper-card>
-                <h1>第二道题</h1>
-                <span class="badge badge-info">PHP</span>
-                <p class="mb-0">皮老板最近在开发新生杯系统（没错，就是这个），但是他太累了，只做了个静态首页就咕咕咕了，你能帮帮他吗？</p>
+            <h1>{{$problem -> title}}</h1>
+            <span class="badge badge-info">{{$problem -> tag}}</span>
+                <p class="mb-0">{{$problem -> description}}</p>
                 <form>
                     <div class="form-group">
                         <label for="answer" class="bmd-label-floating">请在此作答</label>
@@ -63,14 +63,14 @@
         </div>
         <div class="col-sm-12 col-md-4">
             <paper-card>
-                <h5 style="text-align:center" id="contest_status">比赛进行中</h5>
+                <h5 style="text-align:center" id="contest_status">比赛倒计时</h5>
                 <div>
                         <div class="cm-progressbar-container d-none">
                             <div class="progress wemd-light-blue wemd-lighten-4">
                                 <div class="progress-bar wemd-light-blue" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
-                        <p class="cm-countdown" id="countdown">02:33:33</p>
+                        <p class="cm-countdown" id="countdown">00:00:00</p>
                     </div>
             </paper-card>
             <paper-card>
@@ -114,23 +114,45 @@
                     </button>
                 </div>
             </paper-card>
+            @foreach ($notice as $n)
             <paper-card>
-                <h5>这里放公告</h5>
                 <div>
-                    <p>//TODO</p>
+                    {{$n -> name}} - {{$n -> post_date_parsed}}
+                </div>
+                <div>
+                    <h5>{{$n -> title}}</h5>
+                    <p>{{$n -> content}}</p>
                 </div>
             </paper-card>
-            <paper-card>
-                <h5>更多的公告</h5>
-                <div>
-                    <p>//TODO</p>
-                </div>
-            </paper-card>
+            @endforeach
         </div>
     </div>
 </div>
 
 <script>
+    var remaining_time = {{$remaining_time}};
+    updateCountDown();
+
+    var countDownTimer = setInterval(function(){
+        remaining_time--;
+        if(remaining_time<=0){
+            remaining_time=0;
+            clearInterval(countDownTimer);
+            $("#contest_status").text("Contest End");
+        }
+        updateCountDown();
+    }, 1000);
+
+    function updateCountDown(){
+        remaining_hour = parseInt(remaining_time/3600);
+        remaining_min  = parseInt((remaining_time-remaining_hour*3600)/60);
+        remaining_sec  = parseInt((remaining_time-remaining_hour*3600-remaining_min*60));
+        remaining_hour = (remaining_hour<10?'0':'')+remaining_hour;
+        remaining_min  = (remaining_min<10?'0':'')+remaining_min;
+        remaining_sec  = (remaining_sec<10?'0':'')+remaining_sec;
+        document.getElementById("countdown").innerText=remaining_hour+":"+remaining_min+":"+remaining_sec;
+    }
+
     window.addEventListener("load",function() {
         $('loading').css({"opacity":"0","pointer-events":"none"});
     }, false);
