@@ -89,7 +89,7 @@
         <div class="col-sm-12 col-md-8 col-lg-6">
             <div class="text-center" style="margin-top:10vh;margin-bottom:20px;">
                 <h1 style="padding:20px;display:inline-block;">登录</h1>
-                <p>请填写您的学号和姓名</p>
+                <p>欢迎来到新生杯计算机基础知识竞赛</p>
             </div>
             <div class="card">
                 <div class="tab-content" id="accountTabContent">
@@ -105,6 +105,11 @@
                                     <label for="name" class="bmd-label-floating">姓名</label>
                                     <input type="text" name="name" class="form-control" id="login_name" required>
                                     <div class="invalid-feedback">请填写您的姓名</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="bmd-label-floating">密码</label>
+                                    <input type="text" name="password" class="form-control" id="login_password" required>
+                                    <div class="invalid-feedback">请填写您的密码</div>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
