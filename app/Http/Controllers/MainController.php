@@ -44,6 +44,10 @@ class MainController extends Controller
         $Notice = new Notice();
         $notice = $Notice -> getNotice();
         $Problem = new Problem();
+        if(!($Problem -> existPid($pid)))
+        {
+            return abort(404);
+        }
         $problem = $Problem -> getProblembyPid($pid) -> first();
         $problems = $Problem -> getProblemAll();
         $Contest = new Contest();

@@ -24,9 +24,9 @@ class Problem extends Model
         return $problem_item;
     }
 
-    //public function existPid($pid)
-    //{
-    //    $temp = DB::table('problem') -> where('pid','=',$pid) -> select("pid") -> first();
-    //    return empty($temp) ? null : $temp -> pid;
-    //}
+    public function existPid($pid)
+    {
+        $temp = DB::table('problem') -> where('pid','=',$pid) -> first();
+        return empty($temp) ? null : $temp -> pid;
+    }
 }
