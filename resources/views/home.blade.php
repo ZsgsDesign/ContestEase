@@ -76,42 +76,13 @@
             <paper-card>
                 <div class="container-fluid text-center">
                     <div><span class="title">题目列表</span></div>
-                    <button class="btn btn-success bmd-btn-fab bmd-btn-fab-sm">
-                        1
-                    </button>
-                    <button class="btn btn-primary bmd-btn-fab bmd-btn-fab-sm">
-                        2
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        3
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        4
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        5
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        6
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        7
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        8
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        9
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        10
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        11
-                    </button>
-                    <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        12
-                    </button>
+                    @foreach ($problems as $p)
+                    <a href="/{{$p -> pid}}">
+                        <button class="btn btn-success bmd-btn-fab bmd-btn-fab-sm">
+                            {{$p -> pid}}
+                        </button>
+                    </a>
+                    @endforeach
                 </div>
             </paper-card>
             @foreach ($notice as $n)
@@ -138,7 +109,7 @@
         if(remaining_time<=0){
             remaining_time=0;
             clearInterval(countDownTimer);
-            $("#contest_status").text("Contest End");
+            $("#contest_status").text("比赛结束");
         }
         updateCountDown();
     }, 1000);

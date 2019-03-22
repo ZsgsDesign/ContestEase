@@ -14,7 +14,7 @@ class Notice extends Model
 
     public function getNotice()
     {
-        $notice_item = DB::table("notice") -> orderBy('post_date','desc') -> get();
+        $notice_item = DB::table('notice') -> orderBy('post_date','desc') -> get();
         foreach($notice_item as $n)
         {
             $n -> post_date_parsed = $this -> formatPostTime($n -> post_date);
