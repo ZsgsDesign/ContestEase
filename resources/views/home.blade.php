@@ -63,7 +63,7 @@
         </div>
         <div class="col-sm-12 col-md-4">
             <paper-card>
-                <h5 style="text-align:center" id="contest_status">比赛倒计时</h5>
+                <h5 style="text-align:center" id="contest_status">比赛进行中</h5>
                 <div>
                         <div class="cm-progressbar-container d-none">
                             <div class="progress wemd-light-blue wemd-lighten-4">
