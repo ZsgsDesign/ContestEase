@@ -9,6 +9,26 @@ use App\Home\Contest;
 
 class MainController extends Controller
 {
+    public function home(Request $request)
+    {
+        $Notice = new Notice();
+        $notice = $Notice -> getNotice();
+        $Problem = new Problem();
+        $problem = $Problem -> getProblembyPid(1) -> first();
+        $problems = $Problem -> getProblemAll();
+        $Contest = new Contest();
+        $remainingtime = $Contest -> remainingTime();
+        return view('home', [
+                'page_title'=>"首页",
+                'site_title'=>"新生杯",
+                'navigation' => "Home",
+                'notice' =>  $notice,
+                'problem' => $problem,
+                'problems' => $problems,
+                'remaining_time' => $remainingtime,
+        ]);
+    }
+
     public function account(Request $request)
     {
         /*return view('account', [
@@ -18,21 +38,29 @@ class MainController extends Controller
         ]);*/
         return Auth::check() ? redirect("/home") : redirect("/account");
     }
-    public function home(Request $request)
+
+    public function problem(Request $request)
     {
+        $pid = $request->path();
         $Notice = new Notice();
         $notice = $Notice -> getNotice();
         $Problem = new Problem();
-        $problem = $Problem -> getProblem(2);//TODO
+        if(!($Problem -> existPid($pid)))
+        {
+            return abort(404);
+        }
+        $problem = $Problem -> getProblembyPid($pid) -> first();
+        $problems = $Problem -> getProblemAll();
         $Contest = new Contest();
         $remainingtime = $Contest -> remainingTime();
-        return view('home', [
-                'page_title'=>"首页",
-                'site_title'=>"新生杯",
-                'navigation' => "Home",
-                'notice' =>  $notice,
-                'problem' => $problem,
-                'remaining_time' => $remainingtime
+        return view('home',[
+            'page_title'=>"首页",
+            'site_title'=>"新生杯",
+            'navigation' => "Home",
+            'notice' =>  $notice,
+            'problem' => $problem,
+            'problems' => $problems,
+            'remaining_time' => $remainingtime,
         ]);
     }
 }

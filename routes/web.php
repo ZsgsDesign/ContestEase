@@ -12,5 +12,7 @@
 */
 
 Route::redirect('/home', '/', 301);
+
 Route::get('/', 'MainController@home')->name('home');
 Route::get('/account', 'MainController@account')->name('account');
+Route::get('/{pid}', 'MainController@problem')->name('problem');
