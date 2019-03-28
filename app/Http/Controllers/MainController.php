@@ -11,11 +11,12 @@ class MainController extends Controller
 {
     public function account(Request $request)
     {
-        return view('account', [
+        /*return view('account', [
             'page_title'=>"登录",
             'site_title'=>"新生杯",
             'navigation' => "Account",
-        ]);
+        ]);*/
+        return Auth::check() ? redirect("/home") : redirect("/account");
     }
     public function home(Request $request)
     {
