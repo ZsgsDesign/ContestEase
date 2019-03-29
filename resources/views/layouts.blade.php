@@ -142,7 +142,7 @@
                 <a class="nav-link @if ($navigation === "Account") active @endif" href="/account">登录</a>
                 @else
                 <li class="nav-item dropdown mundb-btn-ucenter">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">您好, {{ Auth::user()["name"] }}</a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">您好，{{ Auth::user()["name"] }}！</a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header"><div><h6>{{ Auth::user()["name"] }}<br/><small>{{ Auth::user()->sid }}</small></h6></div></div>
                         <div class="dropdown-divider"></div>

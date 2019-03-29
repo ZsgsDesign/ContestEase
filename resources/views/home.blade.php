@@ -78,7 +78,7 @@
                     <div><span class="title">题目列表</span></div>
                     @foreach ($problems as $p)
                     <a href="/{{$p -> pid}}">
-                        <button class="btn btn-success bmd-btn-fab bmd-btn-fab-sm">
+                        <button class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
                             {{$p -> pid}}
                         </button>
                     </a>

@@ -46,8 +46,8 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view("auth.login", [
-            'page_title'=>"Login",
-            'site_title'=>"ContestEase",
+            'page_title'=>"登录",
+            'site_title'=>"新生杯",
             'navigation' => "Account"
         ]);
     }
