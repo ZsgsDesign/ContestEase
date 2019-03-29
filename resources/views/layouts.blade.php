@@ -138,7 +138,33 @@
             </ul>
             <ul class="navbar-nav mundb-nav-right">
                 <li class="nav-item mundb-no-shrink />">
-                    <a class="nav-link @if ($navigation === "Account") active @endif" href="/account">登录</a>
+                @guest
+                <a class="nav-link @if ($navigation === "Account") active @endif" href="/account">登录</a>
+                @else
+                <li class="nav-item dropdown mundb-btn-ucenter">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">您好, {{ Auth::user()["name"] }}</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-header"><div><h6>{{ Auth::user()["name"] }}<br/><small>{{ Auth::user()->sid }}</small></h6></div></div>
+                        <div class="dropdown-divider"></div>
+                        <a  class="dropdown-item text-danger"
+                            href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="MDI exit-to-app text-danger"></i> {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+                <script>
+                  window.addEventListener("load", function () {
+                    $('.dropdown-header').click(function (e) {
+                      e.stopPropagation();
+                    });
+                  }, false);
+                </script>
+            @endguest
                     <script>
                         window.addEventListener("load", function () {
                         $('.dropdown-header').click(function (e) {

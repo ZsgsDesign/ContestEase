@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Auth;
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     /*
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,6 +37,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function username()
+    {
+        return 'sid';
+    }
+
     public function showLoginForm()
     {
         return view("auth.login", [
@@ -43,5 +50,22 @@ class LoginController extends Controller
             'site_title'=>"ContestEase",
             'navigation' => "Account"
         ]);
+    }
+
+    public function login()
+    {
+        $this->validate(request(),[
+            "sid" => "required|string|min:9|max:9",
+            "password" => "required|string|min:6|max:20"
+        ]);
+        $user = request(["sid","password"]);
+         if (Auth::attempt($user,true)) {
+             return redirect('/')
+             ->with('message', '登录成功！');
+         } else {
+             return redirect('/account')
+                   ->with('message', '用户名密码不正确')
+                   ->withInput();
+         }
     }
 }

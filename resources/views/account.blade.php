@@ -94,17 +94,13 @@
             <div class="card">
                 <div class="tab-content" id="accountTabContent">
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                        <form class="needs-validation" action="?action=login" method="post" id="login_form" novalidate>
+                        <form class="needs-validation" action="{{route('login')}}" method="post" id="login_form" novalidate>
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="sid" class="bmd-label-floating">学号</label>
                                     <input type="text" name="sid" class="form-control" id="login_sid" required>
                                     <div class="invalid-feedback">请填写您的学号</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="bmd-label-floating">姓名</label>
-                                    <input type="text" name="name" class="form-control" id="login_name" required>
-                                    <div class="invalid-feedback">请填写您的姓名</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="bmd-label-floating">密码</label>

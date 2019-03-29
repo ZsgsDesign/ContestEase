@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Home\Notice;
 use App\Home\Problem;
 use App\Home\Contest;
+use Auth;
 
 class MainController extends Controller
 {
@@ -36,7 +37,19 @@ class MainController extends Controller
             'site_title'=>"新生杯",
             'navigation' => "Account",
         ]);*/
-        return Auth::check() ? redirect("/home") : redirect("/account");
+        return Auth::check() ? redirect("/") : view("account",['page_title'=>"登录",'site_title'=>"新生杯",'navigation' => "Account"]);
+        //Auth::login($user);
+        /*$user = array(
+            "sid" => @$_POST["sid"],
+            "name" => @$_POST["name"],
+            "password" => @$_POST["password"]
+        );
+        if(Auth::attempt($user,true)){
+            Auth::login(Auth::user(),true);
+            return redirect("home");
+        }else{
+            ;
+        }*/
     }
 
     public function problem(Request $request)
