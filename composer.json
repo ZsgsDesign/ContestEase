@@ -24,14 +24,10 @@
         "phpunit/phpunit": "^7.5"
     },
     "config": {
-        "github-oauth": {
-            "github.com": "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"
-        },
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
     },
-    
     "extra": {
         "laravel": {
             "dont-discover": []
